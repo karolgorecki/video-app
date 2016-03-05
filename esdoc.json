@@ -1,0 +1,8 @@
+{
+  "source": "./src",
+  "destination": "./docs/",
+  "title": "Demo Video App",
+  "plugins": [
+    {"name": "esdoc-es7-plugin"}
+  ]
+}
