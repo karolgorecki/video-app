@@ -3,7 +3,13 @@ import { Router, Route, IndexRedirect, browserHistory } from 'react-router';
 
 import {App, Home, NoMatch} from 'containers';
 
+/**
+ * Root is the top level wrapper, it's rendered to HTML
+ */
 export default class Root extends Component {
+  /**
+   * render renders Root
+   */
   render() {
     return (
       <Router history={browserHistory}>

@@ -2,6 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import { Navbar, Footer } from 'components';
 import { Link } from 'react-router';
 
+/**
+ * App container renders pages given by react router
+ */
 export default class App extends Component {
   static propTypes = {
     children: PropTypes.object.isRequired
@@ -22,6 +25,9 @@ export default class App extends Component {
     return '';
   }
 
+  /**
+   * render renders App
+   */
   render() {
     const styles = require('./App.scss');
     return (
@@ -46,7 +52,6 @@ export default class App extends Component {
               </div>
             </div>
           </div>
-          <Footer/>
         </div>
       </div>
     );

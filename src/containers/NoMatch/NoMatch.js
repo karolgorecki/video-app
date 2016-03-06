@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 
+/**
+ * NoMatch renders the 404 page
+ */
 export default class NoMatch extends Component {
+  /**
+   * render renders NoMatch
+   */
   render() {
     return (
       <div className="jumbotron">

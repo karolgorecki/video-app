@@ -1,6 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
+/**
+ * Navbar create the top bar with user name & right menu button
+ */
 export default class Navbar extends Component {
   static propTypes = {
     toggleMenu: PropTypes.func.isRequired
@@ -10,6 +13,9 @@ export default class Navbar extends Component {
     return 'Karol Górecki';
   }
 
+  /**
+   * render renders Navbar
+   */
   render() {
     const styles = require('./Navbar.scss');
     return (

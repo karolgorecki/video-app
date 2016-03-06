@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 
+/**
+ * Home renders home page
+ */
 export default class Home extends Component {
+  /**
+   * render renders Home
+   */
   render() {
     return (
       <div>
