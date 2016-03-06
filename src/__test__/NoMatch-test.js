@@ -6,11 +6,11 @@ import chaiEnzyme from 'chai-enzyme'
 
 chai.use(chaiEnzyme());
 
-import { Root } from 'containers';
+import { NoMatch } from 'containers';
 
-describe('<Root /> container', () => {
+describe('<NoMatch /> container', () => {
   it('renders w/o errors', () => {
-    const wrapper = shallow(<Root />);
+    const wrapper = shallow(<NoMatch />);
     expect(wrapper).to.be.present();
   });
 });

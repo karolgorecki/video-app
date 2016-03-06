@@ -12,6 +12,7 @@ module.exports = function(config) {
     autoWatch: false,
     // logLevel: config.LOG_DISABLE,
     reporters: ['mocha', 'coverage'],
+    // reporters: ['nyan', 'coverage'],
     webpack: {
       externals: {
         'cheerio': 'window',
