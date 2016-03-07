@@ -19,7 +19,7 @@ export default class Pagination extends Component {
     for (let idx = 0; idx < pages; idx++) {
       if (idx + 1 === currentPage) {
         pagesNode.push(
-          <li key={idx} className="active">
+          <li key={idx} className="page-link active">
             <span>{idx + 1} <span className="sr-only">(current)</span></span>
           </li>
         );
@@ -27,7 +27,7 @@ export default class Pagination extends Component {
       }
       pagesNode.push(
         <li key={idx}>
-          <Link to={`/video/${idx + 1}`}>{idx + 1} </Link>
+          <Link className="page-link" to={`/video/${idx + 1}`}>{idx + 1} </Link>
         </li>
       );
     }
@@ -49,7 +49,7 @@ export default class Pagination extends Component {
   makePrev = () => {
     if (this.props.current > 1) {
       return (
-        <li>
+        <li className="prev-page">
           <Link to={`/video/${this.props.current - 1}`} aria-label="Previous">
             <span aria-hidden="true">&laquo;</span>
           </Link>
@@ -57,7 +57,7 @@ export default class Pagination extends Component {
       );
     }
     return (
-      <li className="disabled">
+      <li className="disabled prev-page">
         <span aria-label="Previous">
           <span aria-hidden="true">&laquo;</span>
         </span>
@@ -68,7 +68,7 @@ export default class Pagination extends Component {
   makeNext = () => {
     if (this.props.current < this.totalPages()) {
       return (
-        <li>
+        <li className="next-page">
           <Link to={`/video/${this.props.current + 1}`} aria-label="Next">
             <span aria-hidden="true">&raquo;</span>
           </Link>
@@ -76,7 +76,7 @@ export default class Pagination extends Component {
       );
     }
     return (
-      <li className="disabled">
+      <li className="next-page disabled">
         <span aria-label="Next">
           <span aria-hidden="true">&raquo;</span>
         </span>
