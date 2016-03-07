@@ -4,6 +4,7 @@ import { Router, Route, IndexRedirect, browserHistory } from 'react-router';
 import {
   App,
   Home,
+  Edit,
   Videos,
   New,
   NoMatch
@@ -23,6 +24,7 @@ export default class Root extends Component {
             <IndexRedirect to="home" />
             <Route path="home" component={Home}/>
             <Route path="video(/:page)" component={Videos}/>
+            <Route path="edit/:id" component={Edit}/>
             <Route path="new" component={New}/>
             <Route path="*" component={NoMatch}/>
           </Route>

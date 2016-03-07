@@ -2,3 +2,4 @@
 export Navbar from './Navbar/Navbar';
 export Sidebar from './Sidebar/Sidebar';
 export Video from './Video/Video';
+export Pagination from './Pagination/Pagination';

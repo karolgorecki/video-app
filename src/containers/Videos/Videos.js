@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
-import { Video } from 'components';
+import { Video, Pagination } from 'components';
 
 const videosPerPage = 5;
 /**
@@ -20,7 +20,7 @@ export default class Videos extends Component {
     const end = start + videosPerPage;
     const videos = JSON.parse(localStorage.getItem('videos'));
     const nodes = videos.slice(start, end).map((video) => {
-      return <Video key={video.id} video={video}/>;
+      return <Video removeVideo={this.removeVideo} id={video.id} key={video.id} video={video}/>;
     });
     return nodes;
   }
@@ -29,78 +29,11 @@ export default class Videos extends Component {
     return this.props.params.page ? parseInt(this.props.params.page, 10) : 1;
   }
 
-  totalPages = () => {
-    return Math.ceil(this.countVideos() / videosPerPage);
-  }
-
-  makePagination = () => {
-    const pages = this.totalPages();
-    const currentPage = this.getCurrentPage();
-
-    const pagesNode = [];
-    for (let idx = 0; idx < pages; idx++) {
-      if (idx + 1 === currentPage) {
-        pagesNode.push(
-          <li key={idx} className="active">
-            <span>{idx + 1} <span className="sr-only">(current)</span></span>
-          </li>
-        );
-        continue;
-      }
-      pagesNode.push(
-        <li key={idx}>
-          <Link to={`/video/${idx + 1}`}>{idx + 1} </Link>
-        </li>
-      );
-    }
-
-    return (
-      <nav style={{margin: '0 auto', textAlign: 'center'}}>
-        <ul className="pagination pagination-lg">
-          {this.makePrev()}
-          {pagesNode}
-          {this.makeNext()}
-        </ul>
-      </nav>
-    );
-  }
-
-  makePrev = () => {
-    if (this.getCurrentPage() > 1) {
-      return (
-        <li>
-          <Link to={`/video/${this.getCurrentPage() - 1}`} aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-          </Link>
-        </li>
-      );
-    }
-    return (
-      <li className="disabled">
-        <span aria-label="Previous">
-          <span aria-hidden="true">&laquo;</span>
-        </span>
-      </li>
-    );
-  }
-
-  makeNext = () => {
-    if (this.getCurrentPage() < this.totalPages()) {
-      return (
-        <li>
-          <Link to={`/video/${this.getCurrentPage() + 1}`} aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-          </Link>
-        </li>
-      );
-    }
-    return (
-      <li className="disabled">
-        <span aria-label="Next">
-          <span aria-hidden="true">&raquo;</span>
-        </span>
-      </li>
-    );
+  removeVideo = (id) => {
+    const videos = JSON.parse(localStorage.getItem('videos'));
+    const newVideos = videos.filter((item) => !(item.id === id));
+    localStorage.setItem('videos', JSON.stringify(newVideos));
+    this.forceUpdate();
   }
 
   countVideos = () => {
@@ -111,17 +44,35 @@ export default class Videos extends Component {
     return videos.length;
   }
 
+  noVideos = () => {
+    return (
+      <div className="jumbotron">
+        <h1>No videos, yet...</h1>
+        <p>Sorry, you don't have any videos here. Maybe you'll add some?</p>
+        <p>
+          <Link to="/new" className="btn btn-success btn-lg">
+            Add Video
+            {' '}
+            <span className="glyphicon glyphicon-menu-right" style={{top: 3}}></span>
+          </Link>
+        </p>
+      </div>
+    );
+  }
+
   /**
    * render renders Videos
    */
   render() {
     return (
       <div>
-        <h1>List of videos {(this.countVideos() > 0) && <span className="badge">{this.countVideos()}</span>}</h1>
-        {!this.countVideos() && <div>Sorry, no videos</div>}
+        {this.countVideos() > 0 &&
+        <h1>List of videos <span className="badge">{this.countVideos()}</span></h1>}
+
+        {!this.countVideos() && this.noVideos()}
 
         {this.getVideos()}
-        {(this.countVideos() > videosPerPage) && this.makePagination()}
+        <Pagination perPage={videosPerPage} current={this.getCurrentPage()} max={this.countVideos()}/>
       </div>
     );
   }
