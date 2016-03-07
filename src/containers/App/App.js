@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Navbar, Footer } from 'components';
-import { Link } from 'react-router';
+import { Navbar, Sidebar } from 'components';
 
 /**
  * App container renders pages given by react router
@@ -13,6 +12,16 @@ export default class App extends Component {
   state = {
     isMenuOpen: false
   };
+
+  componentWillMount = () => {
+    if (localStorage.getItem('state') !== null) {
+      this.setState(JSON.parse(localStorage.state));
+    }
+  }
+
+  componentDidUpdate = () => {
+    localStorage.setItem('state', JSON.stringify(this.state));
+  }
 
   toggleMenu = () => {
     this.setState({isMenuOpen: !this.state.isMenuOpen});
@@ -38,19 +47,7 @@ export default class App extends Component {
             <div className="col-xs-12 col-sm-9">
               {this.props.children}
             </div>
-            <div className="col-xs-6 col-sm-3 sidebar-offcanvas">
-              <div className="list-group">
-                <Link to="/home" activeClassName="list-group-item active" className="list-group-item">
-                  <span className="glyphicon glyphicon-home"></span> Homepage
-                </Link>
-                <Link to="/videos" activeClassName="list-group-item active" className="list-group-item">
-                  <span className="glyphicon glyphicon-facetime-video"></span> List video
-                </Link>
-                <Link to="/new" activeClassName="list-group-item active" className="list-group-item">
-                  <span className="glyphicon glyphicon-plus"></span> Add new video
-                </Link>
-              </div>
-            </div>
+            <Sidebar />
           </div>
         </div>
       </div>

@@ -1,0 +1,16 @@
+.formWrap {
+  padding: 20px;
+  background: #f0f0f0;
+}
+
+.heading {
+  margin: 0 auto 20px;
+}
+
+:global {
+  input:valid,
+  textarea:valid {
+    border: 1px solid #2d5;
+    background: #dfe;
+  }
+}
