@@ -63,3 +63,9 @@ To run functional tests you should have installed `Nightwatch` and running `Sele
 ```
 nightwatch
 ```
+
+### Generate documentation
+To generate esDoc use:
+```
+npm run doc
+```
