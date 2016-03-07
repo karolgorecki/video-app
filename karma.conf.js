@@ -10,7 +10,7 @@ module.exports = function(config) {
       'src/**/*-test.js': ['webpack', 'sourcemap']
     },
     autoWatch: false,
-    // logLevel: config.LOG_DISABLE,
+    logLevel: config.LOG_DISABLE,
     reporters: ['mocha', 'coverage'],
     // reporters: ['nyan', 'coverage'],
     webpack: {

@@ -8,13 +8,12 @@ chai.use(chaiEnzyme());
 import { Pagination } from 'components';
 
 describe('<Pagination /> component', () => {
+  const wrapper = shallow(<Pagination current={1} max={20} perPage={4} />);
   it('renders w/o errors', () => {
-    const wrapper = shallow(<Pagination current={1} max={20} perPage={4} />);
     expect(wrapper).to.be.present();
   });
 
   it('should render pagination with disabled prev button', () => {
-    const wrapper = shallow(<Pagination current={1} max={20} perPage={4} />);
     expect(wrapper.find('.prev-page').hasClass('disabled')).to.equal(true);
   });
 

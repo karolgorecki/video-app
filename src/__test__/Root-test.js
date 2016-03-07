@@ -8,8 +8,8 @@ chai.use(chaiEnzyme());
 import { Root } from 'containers';
 
 describe('<Root /> container', () => {
+  const wrapper = shallow(<Root />);
   it('renders w/o errors', () => {
-    const wrapper = shallow(<Root />);
     expect(wrapper).to.be.present();
   });
 });

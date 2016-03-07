@@ -29,6 +29,7 @@ export default class Edit extends Component {
   componentWillMount = () => {
     if (localStorage.getItem('videos') === null) {
       this.context.router.replace('/');
+      return;
     }
 
     const videos = JSON.parse(localStorage.getItem('videos'));

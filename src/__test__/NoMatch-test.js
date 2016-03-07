@@ -8,8 +8,8 @@ chai.use(chaiEnzyme());
 import { NoMatch } from 'containers';
 
 describe('<NoMatch /> container', () => {
+  const wrapper = shallow(<NoMatch />);
   it('renders w/o errors', () => {
-    const wrapper = shallow(<NoMatch />);
     expect(wrapper).to.be.present();
   });
 });

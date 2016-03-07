@@ -32,10 +32,6 @@ export default class Video extends Component {
     modal: false
   }
 
-  removeVideo = () => {
-
-  }
-
   openModal = () => {
     this.setState({modal: true});
   }
@@ -52,14 +48,14 @@ export default class Video extends Component {
     return (
       <div className="row">
         <Modal style={modalStyles} isOpen={this.state.modal} onRequestClose={this.closeModal}>
-          <span onClick={this.closeModal} className={styles.close}>
+          <span onClick={this.closeModal} className={styles.close + ' close-modal'}>
             &times;
           </span>
           <img className={styles.img} src={this.props.video.image} alt="image" />
         </Modal>
         <hr/>
         <div className="col-xs-4 col-md-4">
-          <a href="#" onClick={this.openModal}>
+          <a href="#" className="open-modal" onClick={this.openModal}>
             <img style={{width: '100%', height: 'auto', maxWidth: '100%'}} src={this.props.video.thumbnail} alt={this.props.video.title} />
           </a>
         </div>
@@ -74,7 +70,7 @@ export default class Video extends Component {
               </li>
               <li role="separator" className="divider"></li>
               <li>
-                <a href="#" onClick={() => this.props.removeVideo(this.props.id)}>
+                <a className="remove-video" href="#" onClick={() => this.props.removeVideo(this.props.id)}>
                   <span className="glyphicon glyphicon-trash"></span> Remove
                 </a>
               </li>

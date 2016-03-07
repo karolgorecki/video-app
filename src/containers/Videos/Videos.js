@@ -26,7 +26,7 @@ export default class Videos extends Component {
   }
 
   getCurrentPage = () => {
-    return this.props.params.page ? parseInt(this.props.params.page, 10) : 1;
+    return (this.props.params && this.props.params.page) ? parseInt(this.props.params.page, 10) : 1;
   }
 
   removeVideo = (id) => {
